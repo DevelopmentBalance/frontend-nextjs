@@ -13,7 +13,7 @@ export const Container = styled(Card).attrs({
   justify-content: space-between;
 `;
 
-export const Element = styled.p`
+export const Element = styled.div`
   display: flex;
   align-items: flex-start;
 

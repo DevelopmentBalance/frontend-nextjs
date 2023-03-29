@@ -1,7 +1,18 @@
 import { useState, useEffect } from "react";
 
 function getWindowDimensions() {
-  const width = typeof window === undefined && window?.innerWidth?.width;
+  if (typeof window == "undefined")
+    return {
+      width: 0,
+      isMobile: false,
+      isTablet: false,
+      isTabletPortrait: false,
+      isDesktop: false,
+    };
+
+  const {
+    innerWidth: { width },
+  } = window;
 
   const isDesktop = width >= 1024;
   const isTablet = width <= 801;
@@ -9,11 +20,11 @@ function getWindowDimensions() {
   const isMobile = width <= 480;
 
   return {
-    width,
-    isMobile,
-    isTablet,
-    isTabletPortrait,
-    isDesktop,
+    width: width,
+    isMobile: isMobile,
+    isTablet: isTablet,
+    isTabletPortrait: isTabletPortrait,
+    isDesktop: isDesktop,
   };
 }
 

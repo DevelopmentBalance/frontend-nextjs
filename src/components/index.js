@@ -7,6 +7,7 @@ import { GoBack } from "./GoBack";
 import { CustomTable as Table } from "./Table";
 import { Card } from "./Card";
 import { BalanceCard } from "./BalanceCard";
+import { Skeleton } from "./Skeleton";
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   Table,
   Card,
   BalanceCard,
+  Skeleton,
 };

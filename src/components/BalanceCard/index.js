@@ -1,10 +1,11 @@
 import React from "react";
-// import { Skeleton } from "@mui/material";
 
 import { maskReal } from "@/infrastructure/utils";
 
 import eyesView from "@/assets/icons/eyes-view.png";
 import eyesNowiew from "@/assets/icons/eyes-noview.png";
+
+import { Skeleton } from "../Skeleton";
 
 import * as S from "./styles";
 
@@ -20,12 +21,7 @@ export const BalanceCard = ({
 
   const renderValue = (children) => {
     if (isLoading) {
-      return (
-        <S.Value isLoading={isLoading}>
-          {/* <Skeleton variant="text" width={125} height={40} /> */}
-          teste
-        </S.Value>
-      );
+      return <Skeleton height={30} width={150} />;
     }
     return children;
   };

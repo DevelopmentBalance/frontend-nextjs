@@ -1,9 +1,8 @@
 import React from "react";
-// import { Skeleton } from "@mui/material";
 import { useRouter } from "next/router";
 
 import { Balance } from "@/components/modules";
-import { ModalConectBank } from "@/components";
+import { ModalConectBank, Skeleton } from "@/components";
 
 import { useBanks } from "./useBanks";
 import { BankCard } from "./BankCard";
@@ -33,14 +32,11 @@ const Banks = () => {
       <S.HomeContainer>
         <S.Title>
           <S.TitleHello>Olá,</S.TitleHello>
-          <S.TitleSurname>
-            {/* {isLoading ? (
-              <Skeleton variant="text" width={150} height={40} />
-            ) : (
-              user?.surname
-            )} */}
-            {user?.surname}
-          </S.TitleSurname>
+          {isLoading ? (
+            <Skeleton height={30} width={150} />
+          ) : (
+            <S.TitleSurname>{user?.surname}</S.TitleSurname>
+          )}
         </S.Title>
 
         <S.BalanceCard
