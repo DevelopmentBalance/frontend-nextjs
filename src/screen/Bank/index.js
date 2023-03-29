@@ -9,7 +9,7 @@ import { useBank } from "./useBank";
 
 import * as S from "./styles";
 
-const Bank = () => {
+export const Bank = () => {
   const router = useRouter();
 
   const {
@@ -41,13 +41,3 @@ const Bank = () => {
     </Balance>
   );
 };
-
-// export default Bank;
-
-// Bank.getInitialProps = async (context) => {
-//   const ctx = App.getInitialProps(context); // error: Argument of type 'NextPageContext' is not assignable to parameter of type 'AppContext'.
-
-//   return { ...ctx, example: "foo" };
-// };
-
-export default Bank;

@@ -6,7 +6,7 @@ import { useRegister } from "./useRegister";
 
 import * as S from "./styles";
 
-const Register = () => {
+export const Register = () => {
   const { onSubmit, registerSchema, getFieldDefaultProps, isSubmitting } =
     useRegister();
 
@@ -31,5 +31,3 @@ const Register = () => {
     </S.RegisterContent>
   );
 };
-
-export default Register;

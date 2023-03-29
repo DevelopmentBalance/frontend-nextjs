@@ -11,7 +11,7 @@ import addBankImage from "@/assets/icons/add.png";
 
 import * as S from "./styles";
 
-const Banks = () => {
+export const Banks = () => {
   const {
     user,
     isUserWithoutBank,
@@ -84,5 +84,3 @@ const Banks = () => {
     </Balance>
   );
 };
-
-export default Banks;

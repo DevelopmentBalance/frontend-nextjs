@@ -12,7 +12,7 @@ import { useLogin } from "./useLogin";
 
 import * as S from "./styles";
 
-const Login = () => {
+export const Login = () => {
   const { push } = useRouter();
   const { onSubmit, loginSchema } = useLogin();
   const { email, password } = loginSchema;
@@ -85,5 +85,3 @@ const Login = () => {
     </S.Body>
   );
 };
-
-export default Login;
