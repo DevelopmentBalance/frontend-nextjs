@@ -21,7 +21,7 @@ export const WithoutBank = ({
       <S.Message>
         Acabamos de ver que você não tem banco conectado com a nossa plataforma.
       </S.Message>
-      <S.Image src={imageConnect} />
+      <S.Image src={imageConnect.src} />
       <S.Question>O que acha de conectar agora?</S.Question>
       <Button
         onClick={(event) => {
