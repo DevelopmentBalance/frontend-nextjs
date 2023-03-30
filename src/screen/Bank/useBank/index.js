@@ -15,7 +15,7 @@ export const useBank = (bankId) => {
   const [bank, setBank] = useState({});
   const [bankUpdated, setBankUpdated] = useState(false);
   const [page, setPage] = useState(1);
-  const [perPage] = useState(3);
+  const [perPage] = useState(10);
   const [isLoading, setLoading] = useState(true);
 
   const { push } = useRouter();
