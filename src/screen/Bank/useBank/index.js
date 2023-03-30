@@ -117,7 +117,11 @@ export const useBank = (bankId) => {
       content: (
         <>
           <S.RowIcon
-            src={transaction?.type_transaction === "income" ? income : expense}
+            src={
+              transaction?.type_transaction === "income"
+                ? income.src
+                : expense.src
+            }
             alt="row.type_transaction"
           />
         </>
