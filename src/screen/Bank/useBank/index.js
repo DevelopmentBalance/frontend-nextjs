@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import { useApp } from "@/application/context";
 import { bankMock, banksMock } from "@/application/mocks";
-import { maskReal } from "@/infrastructure/utils";
+import { maskReal, dateAndTimeFormatter } from "@/infrastructure/utils";
 import { useBankService } from "@/infrastructure/services/bank-service";
 
 import income from "@/assets/icons/income.png";
@@ -15,7 +15,7 @@ export const useBank = (bankId) => {
   const [bank, setBank] = useState({});
   const [bankUpdated, setBankUpdated] = useState(false);
   const [page, setPage] = useState(1);
-  const [perPage] = useState(10);
+  const [perPage] = useState(3);
   const [isLoading, setLoading] = useState(true);
 
   const { push } = useRouter();
@@ -68,13 +68,13 @@ export const useBank = (bankId) => {
     {
       key: "address",
       content: "Nome",
-      style: { width: 160 },
+      style: { width: 160, skeletonConfig: { width: 160, height: 15 } },
       cellProps: { component: "th", scope: "row" },
     },
     {
       key: "amount",
       content: "Valor",
-      style: { width: 160 },
+      style: { width: 100, skeletonConfig: { width: 100, height: 15 } },
       cellProps: { align: "center" },
     },
     {
@@ -84,9 +84,15 @@ export const useBank = (bankId) => {
       cellProps: { align: "center" },
     },
     {
+      key: "datePayment",
+      content: "Data",
+      style: { width: 50, skeletonConfig: { width: 50, height: 15 } },
+      cellProps: { align: "center" },
+    },
+    {
       title: "typeTransaction",
       content: "",
-      style: { width: 160 },
+      style: { width: 50 },
       cellProps: { align: "center" },
     },
   ];
@@ -97,13 +103,13 @@ export const useBank = (bankId) => {
     {
       key: "address",
       content: <>{transaction?.address}</>,
-      style: { width: 160 },
+      style: { width: 160, skeletonConfig: { width: 160, height: 15 } },
       cellProps: { component: "th", scope: "row" },
     },
     {
       key: "amount",
       content: <>{maskReal(transaction?.amount)}</>,
-      style: { width: 160 },
+      style: { width: 100, skeletonConfig: { width: 100, height: 15 } },
       cellProps: { align: "center" },
     },
     {
@@ -113,20 +119,30 @@ export const useBank = (bankId) => {
       cellProps: { align: "center" },
     },
     {
+      key: "datePayment",
+      content: <>{dateAndTimeFormatter(transaction?.date)?.slice(0, 5)}</>,
+      style: {
+        width: 50,
+        skeletonConfig: { width: 50, height: 15 },
+      },
+      cellProps: { align: "center" },
+    },
+    {
       key: "typeTransaction",
       content: (
-        <>
-          <S.RowIcon
-            src={
-              transaction?.type_transaction === "income"
-                ? income.src
-                : expense.src
-            }
-            alt="row.type_transaction"
-          />
-        </>
+        <S.RowIcon
+          src={
+            transaction?.type_transaction === "income"
+              ? income.src
+              : expense.src
+          }
+          alt="tipo de tansação"
+        />
       ),
-      style: { width: 160 },
+      style: {
+        width: 50,
+        skeletonConfig: { width: 25, height: 25, circle: true },
+      },
       cellProps: { align: "center" },
     },
   ]);

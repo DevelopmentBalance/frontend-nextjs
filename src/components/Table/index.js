@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { Skeleton } from "../Skeleton";
+
 import { Row } from "./Row";
 import { Header } from "./Header";
 import { Pagination } from "./Pagination";
@@ -22,42 +24,40 @@ export const CustomTable = ({
     isLoading ? data?.slice(0, rowSkeleton) : data;
 
   return (
-    <div {...restProps}>
-      <S.Title
-        onClick={() => {
-          if (titleOnClick) {
-            titleOnClick();
-          }
-        }}
-        hasRedirect={!!titleOnClick}
-      >
-        {title}
-        {/* {isLoading ? <Skeleton variant="text" width={250} /> : title} */}
-      </S.Title>
+    <S.TableContainer {...restProps}>
+      {isLoading ? (
+        <Skeleton width={250} height={15} />
+      ) : (
+        <S.Title
+          onClick={() => {
+            if (titleOnClick) {
+              titleOnClick();
+            }
+          }}
+          hasRedirect={!!titleOnClick}
+        >
+          {title}
+        </S.Title>
+      )}
 
-      <div>
-        <Header row={headerContent} isLoading={isLoading} />
-        <div>
-          {getRows(rowsContent)?.map((rowContent, index) => (
-            <Row key={index} row={rowContent} isLoading={isLoading} />
-          ))}
-        </div>
-      </div>
+      <Header row={headerContent} isLoading={isLoading} />
+
+      <S.TableRows>
+        {getRows(rowsContent)?.map((rowContent, index) => (
+          <Row key={index} row={rowContent} isLoading={isLoading} />
+        ))}
+      </S.TableRows>
 
       {hasPagination && (
-        <div>
-          <dvi>
-            <Pagination
-              count={rowsContent?.length}
-              isLoading={isLoading}
-              page={page}
-              onPageChange={(page) => {
-                setPage(page);
-              }}
-            />
-          </dvi>
-        </div>
+        <Pagination
+          count={rowsContent?.length}
+          isLoading={isLoading}
+          page={page}
+          onPageChange={(page) => {
+            setPage(page);
+          }}
+        />
       )}
-    </div>
+    </S.TableContainer>
   );
 };

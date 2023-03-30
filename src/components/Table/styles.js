@@ -1,8 +1,13 @@
 import styled, { css } from "styled-components";
 
+export const TableContainer = styled.div`
+  width: 100%;
+`;
+
 export const Title = styled.p`
   padding: 10px 0;
   cursor: pointer;
+  font-family: Jost Bold;
 
   ${({ isDisabled }) =>
     isDisabled &&
@@ -21,4 +26,10 @@ export const Title = styled.p`
       -ms-user-select: none;
       user-select: none;
     `}
+`;
+
+export const TableRows = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;

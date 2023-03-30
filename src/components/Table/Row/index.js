@@ -1,33 +1,32 @@
 import React from "react";
 
+import { Skeleton } from "@/components/Skeleton";
+
+import * as S from "./styles";
+
 export const Row = ({ isLoading, row }) => {
-  const CustomCell = ({
-    children,
-    typeSkeleton = "text",
-    widthSkeleton = "",
-    ...restProps
-  }) => (
-    <div {...restProps}>
+  const CustomColumn = ({ children, skeletonConfig, ...restProps }) => (
+    <S.Column {...restProps}>
       {isLoading ? (
-        // <Skeleton variant={typeSkeleton} width={widthSkeleton} />
-        <div>loading</div>
+        <Skeleton width={100} height={15} {...(skeletonConfig || {})} />
       ) : (
         children
       )}
-    </div>
+    </S.Column>
   );
 
   return (
-    <div>
+    <S.Row>
       {row?.map((column) => (
-        <div
+        <CustomColumn
           key={column.key}
           style={column?.style || {}}
+          skeletonConfig={column?.style?.skeletonConfig}
           {...(column?.cellProps || {})}
         >
           {column.content}
-        </div>
+        </CustomColumn>
       ))}
-    </div>
+    </S.Row>
   );
 };

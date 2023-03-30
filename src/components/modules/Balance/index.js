@@ -6,7 +6,7 @@ import { useBalance } from "./useBalance";
 
 import * as S from "./styles";
 
-const Balance = ({ children }) => {
+const Balance = ({ children, ...restProps }) => {
   const {
     listMain,
     stateMain,
@@ -26,7 +26,9 @@ const Balance = ({ children }) => {
           setState={setStateMain}
         />
       </S.Left>
-      <S.Right state={stateMain}>{children}</S.Right>
+      <S.Right state={stateMain} {...restProps}>
+        {children}
+      </S.Right>
       {stateModal && (
         <ModalConectBank
           state={stateModal}

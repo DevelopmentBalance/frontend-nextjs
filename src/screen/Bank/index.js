@@ -1,9 +1,5 @@
 import React from "react";
-import App, { AppProps } from "next/app";
 import { useRouter } from "next/router";
-
-import { Balance } from "../../components/modules";
-import { GoBack, Table } from "../../components";
 
 import { useBank } from "./useBank";
 
@@ -23,21 +19,19 @@ export const Bank = () => {
   } = useBank(router?.query?._);
 
   return (
-    <Balance>
-      <GoBack title="Detalhes do Banco" isBlack onClick={redirectHome} />
-      <S.HomeContainer>
-        <S.TableContainer>
-          <Table
-            title={bankTitle}
-            headerContent={headerContent}
-            rowsContent={rowsContent}
-            isLoading={isLoading}
-            page={page}
-            setPage={setPage}
-            hasPagination
-          />
-        </S.TableContainer>
-      </S.HomeContainer>
-    </Balance>
+    <S.HomeContainer>
+      <S.GoBack title="Voltar" isBlack onClick={redirectHome} />
+      <S.Title>{bankTitle}</S.Title>
+
+      <S.TableContainer
+        title={"Transações"}
+        headerContent={headerContent}
+        rowsContent={rowsContent}
+        isLoading={isLoading}
+        page={page}
+        setPage={setPage}
+        hasPagination
+      />
+    </S.HomeContainer>
   );
 };

@@ -1,5 +1,14 @@
 import * as React from "react";
 
+import { Skeleton } from "@/components/Skeleton";
+
+import doubleLeftArrow from "@/assets/icons/double-left-arrow.png";
+import leftArrow from "@/assets/icons/left-arrow.png";
+import rightArrow from "@/assets/icons/right-arrow.png";
+import doubleRightArrow from "@/assets/icons/double-right-arrow.png";
+
+import * as S from "./styles";
+
 export const Pagination = ({ isLoading, count, page, onPageChange }) => {
   if (!count) {
     return null;
@@ -25,52 +34,43 @@ export const Pagination = ({ isLoading, count, page, onPageChange }) => {
     // onPageChange(lastPage); // added in backend the return
   };
 
-  const CustomIconButton = ({
-    children,
-    typeSkeleton = "circular",
-    ...restProps
-  }) => (
-    <div {...restProps}>
-      {isLoading ? (
-        // <Skeleton variant={typeSkeleton} width={25} height={25} />
-        <div>loading</div>
-      ) : (
-        children
-      )}
-    </div>
+  const CustomIcon = ({ children, ...restProps }) => (
+    <S.CustomIcon {...restProps}>
+      {isLoading ? <Skeleton circle width={25} height={25} /> : children}
+    </S.CustomIcon>
   );
 
   return (
-    <div>
-      <div
+    <S.Actions>
+      <CustomIcon
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
         aria-label="first page"
       >
-        <img alt="#" />
-      </div>
-      <div
+        <S.Icon src={doubleLeftArrow.src} />
+      </CustomIcon>
+      <CustomIcon
         onClick={handleBackButtonClick}
         disabled={page === 0}
         aria-label="previous page"
       >
-        <img alt="#" />
-      </div>
-      <div
+        <S.Icon src={leftArrow.src} width={15} height={15} />
+      </CustomIcon>
+      <CustomIcon
         onClick={handleNextButtonClick}
         // disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="next page"
       >
-        <img alt="#" />
-      </div>
-      <div
+        <S.Icon src={rightArrow.src} width={15} height={15} />
+      </CustomIcon>
+      <CustomIcon
         onClick={handleLastPageButtonClick}
         disabled
         // disabled={page >= Math.ceil(count / rowsPerPage) - 1}
         aria-label="last page"
       >
-        <img alt="#" />
-      </div>
-    </div>
+        <S.Icon src={doubleRightArrow.src} />
+      </CustomIcon>
+    </S.Actions>
   );
 };

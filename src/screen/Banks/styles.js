@@ -41,6 +41,7 @@ export const TitleHello = styled.p`
 
 export const TitleSurname = styled.p`
   font-family: Jost Bold;
+  text-transform: capitalize;
 `;
 
 export const BalanceCard = styled(BalanceCardComponent)`
