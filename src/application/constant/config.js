@@ -8,7 +8,7 @@ const STAGE = {
     BASE_URL: "http://127.0.0.1:8000",
   },
   DEV: {
-    BASE_URL: "https://balance-api.onrender.com",
+    BASE_URL: "https://xfdewphuedg6qmsoha4ngq3kha0gkxdq.lambda-url.sa-east-1.on.aws",
   },
 };
 

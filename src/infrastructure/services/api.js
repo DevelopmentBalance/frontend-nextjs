@@ -12,7 +12,6 @@ export const getService = async (path) => {
     },
   };
   const url = `${STAGE.BASE_URL}/${path}`;
-
   const response = await axios.get(url, config);
   return response?.data;
 };
