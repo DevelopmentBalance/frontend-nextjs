@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const Card = styled.div`
   width: ${({ width }) => width || "125px"};
+  max-width: ${({ maxWidth }) => maxWidth};
   height: ${({ height }) => height || "155px"};
+  max-height: ${({ maxHeight }) => maxHeight};
   background: ${({ background }) => background};
   border-radius: ${({ borderRadius }) => "10px" || borderRadius};
   padding: ${({ padding }) => padding || "20px"};

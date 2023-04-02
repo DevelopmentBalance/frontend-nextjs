@@ -5,12 +5,13 @@ export const Container = styled(Card).attrs({
   background:
     "linear-gradient(114.19deg, #FFFFFF -37.82%, #9549BC 99.99%, #9448BC 100%)",
   borderRadius: "20px",
-  width: "324px",
+  width: "100%",
   height: "87px",
 })`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: ${({ maxWidth }) => maxWidth || "324px"};
 `;
 
 export const Element = styled.div`
@@ -51,6 +52,11 @@ export const Value = styled.p`
         left: 0;
       }
     `}
+
+  @media (max-width: ${({ theme: { media } }) => media.laptops_landscape}) {
+    font-size: 28px;
+    line-height: 26px;
+  }
 `;
 
 export const Eyes = styled.img`
