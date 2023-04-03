@@ -9,6 +9,7 @@ export const MainContent = styled.div`
   @media (max-width: ${({ theme: { media } }) => media.tablet_portrait}) {
     width: ${({ state }) => (state ? "100%" : "0px")};
     position: ${({ state }) => (state ? "fixed" : "relative")};
+    z-index: 99999;
   }
 
   display: flex;

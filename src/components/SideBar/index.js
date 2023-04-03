@@ -27,6 +27,8 @@ export const SideBar = ({
 
   const menuImage = state ? menuImageWhite : menuImagePurple;
 
+  const isAvailableToViewLogo = state || (!state && !isTabletPortrait);
+
   return (
     <S.MainContent
       onClick={() => {
@@ -43,7 +45,7 @@ export const SideBar = ({
           setState(!state);
         }}
       />
-      {(!isTabletPortrait || state) && <S.Logo src={logo.src} />}
+      {isAvailableToViewLogo && <S.Logo src={logo.src} />}
       <S.List>
         {listContent.length &&
           listContent.map((element, index) => (
