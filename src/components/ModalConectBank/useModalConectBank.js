@@ -13,17 +13,41 @@ export const useModalConectBank = ({ onClose }) => {
   const { showToastMessage } = useApp();
 
   const stylesBanks = {
-    [CODE_BANK.NUBANK]: {
-      hide: false,
+    [CODE_BANK.NUBANK]: {},
+    [CODE_BANK.BANCO_ORIGINAL]: {
+      cpf: {
+        hide: true,
+      },
+      password: {
+        hide: true,
+      },
+      submit: {
+        hide: true,
+      }
     },
     [CODE_BANK.BRAZIL_BANK]: {
-      hide: true,
+      cpf: {
+        hide: false,
+      },
+      password: {
+        hide: false,
+      },
     },
     [CODE_BANK.PICPAY]: {
-      hide: true,
+      cpf: {
+        hide: false,
+      },
+      password: {
+        hide: false,
+      },
     },
     [null]: {
-      hide: true,
+      cpf: {
+        hide: true,
+      },
+      password: {
+        hide: true,
+      },
     },
   };
 

@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 
+import { loginBancoOriginal } from "../../infrastructure/services/bank-service";
 import { banksMock } from "@/application/mocks";
+import { CODE_BANK } from "@/application/constant";
 import { maskCpf } from "@/infrastructure/utils";
 import { Input, Select } from "@/components";
 
 import { useModalConectBank } from "./useModalConectBank";
+import { ContentFromBank } from "./ContentFromBank";
 
 import * as S from "./styles";
 
 export const ModalConectBank = ({ onClose, ...restProps }) => {
   const { getCurrentBankStyle, initialValues, onSubmit, stateCode } =
     useModalConectBank({ onClose });
+
+  const [contentFromBank, setContentFromBank] = useState(null);
 
   return (
     <S.Container onClick={onClose} {...restProps}>
@@ -23,13 +28,13 @@ export const ModalConectBank = ({ onClose, ...restProps }) => {
         >
           {({ values, setFieldValue, isSubmitting, handleSubmit }) => (
             <S.FormModal>
-              <p variant="h5">Conexão bancaria</p>
+              <S.Title>Conexão bancaria</S.Title>
 
               {!stateCode && values?.bank?.value && (
-                <p>
+                <S.Observation>
                   As informações abaixo é requisito do próprio banco selecionado
                   para a conexão.
-                </p>
+                </S.Observation>
               )}
 
               {!stateCode && (
@@ -38,14 +43,23 @@ export const ModalConectBank = ({ onClose, ...restProps }) => {
                   label="Bancos disponíveis"
                   placeholder="Selecione o banco..."
                   options={banksMock}
-                  onChange={(e) => setFieldValue("bank", e)}
+                  onChange={async (e) => {
+                    if (e?.value === CODE_BANK.BANCO_ORIGINAL) {
+                      loginBancoOriginal().then((response) =>
+                        setContentFromBank(response?.page)
+                      );
+                    }
+                    setContentFromBank(null);
+                    setFieldValue("bank", e?.value ? e : null);
+                  }}
                   isClearable
                 />
               )}
 
               <Input
                 hide={
-                  getCurrentBankStyle(values?.bank?.value)?.hide || stateCode
+                  getCurrentBankStyle(values?.bank?.value)?.cpf?.hide ||
+                  stateCode
                 }
                 name="cpf"
                 label="CPF - Cadastrado no Banco"
@@ -54,7 +68,8 @@ export const ModalConectBank = ({ onClose, ...restProps }) => {
               />
               <Input
                 hide={
-                  getCurrentBankStyle(values?.bank?.value)?.hide || stateCode
+                  getCurrentBankStyle(values?.bank?.value)?.password?.hide ||
+                  stateCode
                 }
                 name="password"
                 label="Senha - Cadastrada no Banco"
@@ -62,6 +77,8 @@ export const ModalConectBank = ({ onClose, ...restProps }) => {
                 value={values["password"]}
                 onChange={(e) => setFieldValue("password", e.target.value)}
               />
+
+              <ContentFromBank content={contentFromBank} />
 
               {stateCode && (
                 <S.AlertCodeSended>
@@ -78,13 +95,15 @@ export const ModalConectBank = ({ onClose, ...restProps }) => {
                   onChange={(e) => setFieldValue("code", e.target.value)}
                 />
               )}
-              <S.Button
-                disable={isSubmitting}
-                loading={isSubmitting}
-                onClick={handleSubmit}
-              >
-                Enviar
-              </S.Button>
+              {!getCurrentBankStyle(values?.bank?.value)?.submit?.hide && (
+                <S.Button
+                  disable={isSubmitting}
+                  loading={isSubmitting}
+                  onClick={handleSubmit}
+                >
+                  Enviar
+                </S.Button>
+              )}
             </S.FormModal>
           )}
         </Formik>

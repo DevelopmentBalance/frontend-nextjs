@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const SelectContent = styled.div``;
+export const SelectContent = styled.div`
+  width: 100%;
+`;
 
 export const Label = styled.label`
   display: flex;

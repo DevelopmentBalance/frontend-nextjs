@@ -21,6 +21,7 @@ export const Modal = styled.div`
   width: 400px;
   border-radius: 15px;
   padding: 40px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -54,4 +55,13 @@ export const FormModal = styled(Form)`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  align-items: center;
 `;
+
+export const Title = styled.p`
+  width: 100%;
+`
+
+export const Observation = styled.p`
+  width: 100%;
+`

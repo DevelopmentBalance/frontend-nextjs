@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const InputContainer = styled.div`
-  width: ${({ width }) => width};
+  width: ${({ width }) => width || "100%"};
   text-align: left;
   display: ${({ hide }) => (hide ? "none" : "flex")};
   justify-content: center;

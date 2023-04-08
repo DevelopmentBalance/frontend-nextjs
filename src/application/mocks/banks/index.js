@@ -10,6 +10,12 @@ export const banksMock = [
     color: "rgba(157, 2, 217, 0.3)",
   },
   {
+    value: CODE_BANK.BANCO_ORIGINAL,
+    label: "Banco Original",
+    logoImage: "",
+    color: "",
+  },
+  {
     value: CODE_BANK.BRAZIL_BANK,
     label: "BANCO DO BRASIL S.A",
     isDisabled: true,

@@ -1,5 +1,6 @@
 export const CODE_BANK = {
   NUBANK: "260",
+  BANCO_ORIGINAL: "212",
   BRAZIL_BANK: "001",
   PICPAY: "380",
 }
