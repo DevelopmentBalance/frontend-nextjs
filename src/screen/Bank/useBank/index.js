@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { useApp } from "@/application/context";
-import { bankMock, banksMock } from "@/application/mocks";
-import { maskReal } from "@/infrastructure/utils";
+import { banksMock } from "@/application/mocks";
+import { maskReal, dateAndTimeFormatter } from "@/infrastructure/utils";
 import { useBankService } from "@/infrastructure/services/bank-service";
 
 import income from "@/assets/icons/income.png";
@@ -17,6 +17,7 @@ export const useBank = (bankId) => {
   const [page, setPage] = useState(1);
   const [perPage] = useState(10);
   const [isLoading, setLoading] = useState(true);
+  const [isViewBalance, setViewBalance] = useState(true);
 
   const { push } = useRouter();
   const { showToastMessage } = useApp();
@@ -64,82 +65,100 @@ export const useBank = (bankId) => {
     push("/banks");
   };
 
-  const headerContent = [
+  const headerColumns = [
     {
-      key: "address",
       content: "Nome",
-      style: { width: 160 },
-      cellProps: { component: "th", scope: "row" },
+      key: "address",
     },
     {
-      key: "amount",
       content: "Valor",
-      style: { width: 160 },
-      cellProps: { align: "center" },
+      key: "amount",
+      width: "200px",
     },
     {
+      content: "Tipo",
       key: "typePayment",
-      content: "Tipo de pagamento",
-      style: { width: 160 },
-      cellProps: { align: "center" },
+      width: "50px",
     },
     {
-      title: "typeTransaction",
+      content: "Data",
+      key: "datePayment",
+      width: "80px",
+    },
+    {
       content: "",
-      style: { width: 160 },
-      cellProps: { align: "center" },
+      key: "typeTransaction",
+      width: "50px",
     },
   ];
 
-  const transactions = isLoading ? bankMock?.transactions : bank?.transactions;
-
-  const rowsContent = transactions?.map((transaction) => [
-    {
-      key: "address",
-      content: <>{transaction?.address}</>,
-      style: { width: 160 },
-      cellProps: { component: "th", scope: "row" },
-    },
-    {
-      key: "amount",
-      content: <>{maskReal(transaction?.amount)}</>,
-      style: { width: 160 },
-      cellProps: { align: "center" },
-    },
-    {
-      key: "typePayment",
-      content: <>{transaction?.type_payment}</>,
-      style: { width: 160 },
-      cellProps: { align: "center" },
-    },
-    {
-      key: "typeTransaction",
-      content: (
-        <>
+  const rows = bank?.transactions?.map((transaction, index) => ({
+    key: index,
+    onClickRow: () => {},
+    columns: [
+      {
+        key: "address",
+        content: <>{transaction?.address}</>,
+      },
+      {
+        key: "amount",
+        content: <>{maskReal(transaction?.amount)}</>,
+      },
+      {
+        key: "typePayment",
+        content: <>{transaction?.type_payment}</>,
+      },
+      {
+        key: "datePayment",
+        content: <>{dateAndTimeFormatter(transaction?.date)?.slice(0, 5)}</>,
+      },
+      {
+        key: "typeTransaction",
+        content: (
           <S.RowIcon
             src={
               transaction?.type_transaction === "income"
                 ? income.src
                 : expense.src
             }
-            alt="row.type_transaction"
+            alt="tipo de tansação"
           />
-        </>
-      ),
-      style: { width: 160 },
-      cellProps: { align: "center" },
-    },
-  ]);
+        ),
+        justify: "flex-end",
+      },
+    ],
+  }));
 
   const bankTitle = banksMock?.find(({ value }) => value === bank?.code);
+
+  const morePayment = {
+    name: "João",
+    value: 3300,
+  };
+
+  const moreReceived = {
+    name: "Yago",
+    value: 5620,
+  };
+
+  const handleViewBalance = () => {
+    if (isLoading) return;
+
+    setViewBalance(!isViewBalance);
+  };
 
   return {
     page,
     setPage,
     isLoading,
     redirectHome,
-    headerContent,
-    rowsContent,
+    headerColumns,
+    rows,
     bankTitle: bankTitle?.label,
+    bank,
+    morePayment,
+    moreReceived,
+    isViewBalance,
+    handleViewBalance,
   };
 };

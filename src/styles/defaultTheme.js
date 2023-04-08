@@ -30,7 +30,7 @@ const theme = {
   },
   colors: {
     purple_1: "#9448BC",
-    purple_2: "#5D036F",
+    purple_2: "#F6E3FF",
     white_1: "#FFFFFF",
     black_1: "#000000",
     gray_1: "#A9A4AC",

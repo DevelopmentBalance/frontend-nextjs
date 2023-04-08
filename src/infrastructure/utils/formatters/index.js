@@ -1,3 +1,5 @@
+import { format, parseISO } from "date-fns";
+
 export const maskCpf = (value) => {
   value = value.replace(/\D/g, "");
 
@@ -35,4 +37,20 @@ export const removeMaskCpf = (value) => {
     ?.replace("/", "");
 
   return result;
+};
+
+export const dateAndTimeFormatter = (
+  date,
+  hasWordSeparator = false,
+  pattern = "dd/MM/yyyy"
+) => {
+  if (!date) {
+    return "";
+  }
+
+  if (hasWordSeparator) {
+    return format(parseISO(date), `${pattern}, 'às' HH:mm`);
+  }
+
+  return format(parseISO(date), `${pattern} - HH:mm`);
 };
