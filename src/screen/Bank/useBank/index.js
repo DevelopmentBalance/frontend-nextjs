@@ -69,12 +69,11 @@ export const useBank = (bankId) => {
     {
       content: "Nome",
       key: "address",
-      width: "250px",
     },
     {
       content: "Valor",
       key: "amount",
-      width: "100px",
+      width: "200px",
     },
     {
       content: "Tipo",

@@ -26,6 +26,8 @@ export const Bank = () => {
     handleViewBalance,
   } = useBank(router?.query?._);
 
+  const isMock = true;
+
   return (
     <S.HomeContainer>
       <S.GoBack title="Voltar" isBlack onClick={redirectHome} />
@@ -49,52 +51,54 @@ export const Bank = () => {
             onClick={handleViewBalance}
             isView={isViewBalance}
           />
-          <S.MoreCards>
-            <S.MoreCard color="green">
-              <S.MoreCardTitle>Mais te pagou</S.MoreCardTitle>
-              {isLoading ? (
-                <Skeleton width={60} height={25} />
-              ) : (
-                <S.MoreCardName>
-                  {isViewBalance ? morePayment?.name : "*****"}
-                </S.MoreCardName>
-              )}
-              <S.MoreCardValueContainer>
-                <S.MoreCardValueSymbol>R$</S.MoreCardValueSymbol>
+          {!isMock && (
+            <S.MoreCards>
+              <S.MoreCard color="green">
+                <S.MoreCardTitle>Mais te pagou</S.MoreCardTitle>
                 {isLoading ? (
                   <Skeleton width={60} height={25} />
                 ) : (
-                  <S.MoreCardValue>
-                    {isViewBalance
-                      ? maskReal(morePayment?.value, true)
-                      : "*****"}
-                  </S.MoreCardValue>
+                  <S.MoreCardName>
+                    {isViewBalance ? morePayment?.name : "*****"}
+                  </S.MoreCardName>
                 )}
-              </S.MoreCardValueContainer>
-            </S.MoreCard>
-            <S.MoreCard>
-              <S.MoreCardTitle>Mais recebeu</S.MoreCardTitle>
-              {isLoading ? (
-                <Skeleton width={60} height={25} />
-              ) : (
-                <S.MoreCardName>
-                  {isViewBalance ? moreReceived?.name : "*****"}
-                </S.MoreCardName>
-              )}
-              <S.MoreCardValueContainer>
-                <S.MoreCardValueSymbol>R$</S.MoreCardValueSymbol>
+                <S.MoreCardValueContainer>
+                  <S.MoreCardValueSymbol>R$</S.MoreCardValueSymbol>
+                  {isLoading ? (
+                    <Skeleton width={60} height={25} />
+                  ) : (
+                    <S.MoreCardValue>
+                      {isViewBalance
+                        ? maskReal(morePayment?.value, true)
+                        : "*****"}
+                    </S.MoreCardValue>
+                  )}
+                </S.MoreCardValueContainer>
+              </S.MoreCard>
+              <S.MoreCard>
+                <S.MoreCardTitle>Mais recebeu</S.MoreCardTitle>
                 {isLoading ? (
                   <Skeleton width={60} height={25} />
                 ) : (
-                  <S.MoreCardValue>
-                    {isViewBalance
-                      ? maskReal(moreReceived?.value, true)
-                      : "*****"}
-                  </S.MoreCardValue>
+                  <S.MoreCardName>
+                    {isViewBalance ? moreReceived?.name : "*****"}
+                  </S.MoreCardName>
                 )}
-              </S.MoreCardValueContainer>
-            </S.MoreCard>
-          </S.MoreCards>
+                <S.MoreCardValueContainer>
+                  <S.MoreCardValueSymbol>R$</S.MoreCardValueSymbol>
+                  {isLoading ? (
+                    <Skeleton width={60} height={25} />
+                  ) : (
+                    <S.MoreCardValue>
+                      {isViewBalance
+                        ? maskReal(moreReceived?.value, true)
+                        : "*****"}
+                    </S.MoreCardValue>
+                  )}
+                </S.MoreCardValueContainer>
+              </S.MoreCard>
+            </S.MoreCards>
+          )}
         </S.BankDetails>
       </S.PageContainer>
     </S.HomeContainer>
