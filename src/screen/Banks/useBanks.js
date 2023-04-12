@@ -9,9 +9,8 @@ export const useBanks = () => {
   const [userUpdated, setUserUpdate] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [connectBankModal, setConnectBankModal] = useState(false);
-  const [isViewBalance, setViewBalance] = useState(true);
 
-  const { showToastMessage } = useApp();
+  const { showToastMessage, setViewBalance, isViewBalance } = useApp();
   const { push } = useRouter();
 
   useEffect(() => {

@@ -53,6 +53,7 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": 0,
     "array-callback-return": "off",
-    "no-restricted-globals": "off"
+    "no-restricted-globals": "off",
+    "import/no-anonymous-default-export": "off"
   }
 }

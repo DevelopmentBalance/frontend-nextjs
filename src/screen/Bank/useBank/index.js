@@ -17,10 +17,9 @@ export const useBank = (bankId) => {
   const [page, setPage] = useState(1);
   const [perPage] = useState(10);
   const [isLoading, setLoading] = useState(true);
-  const [isViewBalance, setViewBalance] = useState(true);
 
   const { push } = useRouter();
-  const { showToastMessage } = useApp();
+  const { showToastMessage, isViewBalance, setViewBalance } = useApp();
   const { getBank } = useBankService();
 
   const redirectToLogin = () => {
