@@ -3,8 +3,11 @@ import { toast } from "react-toastify";
 import { AppContext } from "../appContext";
 import { APP_ACTIONS } from "../constants";
 
+import { userSessionStorage } from "@/infrastructure/services/user-session-storage";
+
 export const useApp = () => {
   const context = useContext(AppContext);
+  const { setItemSession } = userSessionStorage();
 
   if (!context) throw new Error("Expected to be wrapped in a AppProvider");
 
@@ -48,7 +51,19 @@ export const useApp = () => {
       },
     });
   };
-  
+
+  const setViewBalance = (isView) => {
+    const payload = {
+      isViewBalance: isView,
+    };
+
+    setItemSession("app", payload);
+    dispatch({
+      type: APP_ACTIONS.SET_VIEW_BALANCE,
+      payload,
+    });
+  };
+
   return {
     ...state,
     setPath,
@@ -56,5 +71,6 @@ export const useApp = () => {
     showToastMessage,
     isLoading,
     setIsLoading,
+    setViewBalance,
   };
 };
