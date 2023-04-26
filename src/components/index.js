@@ -2,7 +2,7 @@ import { Button } from "./Button";
 import { Input } from "./Input";
 import { SideBar } from "./SideBar";
 import { ModalConectBank } from "./ModalConectBank";
-import { Select } from "./Select";
+import { SelectComponent } from "./Select";
 import { GoBack } from "./GoBack";
 import { FlexTable } from "./FlexTable";
 import { Card } from "./Card";
@@ -14,7 +14,7 @@ export {
   Input,
   SideBar,
   ModalConectBank,
-  Select,
+  SelectComponent,
   GoBack,
   FlexTable,
   Card,

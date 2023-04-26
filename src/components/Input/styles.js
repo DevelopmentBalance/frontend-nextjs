@@ -15,7 +15,7 @@ export const InputLabel = styled.label`
 `;
 
 export const InputElement = styled.input`
-  background-color: transparent;
+  background-color: transparent !important;
   width: calc(100% - 10px);
   height: 45px;
   padding-left: 10px;
@@ -34,4 +34,17 @@ export const InputElement = styled.input`
   &:focus {
     outline: none;
   }
+
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus,
+  :-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  }
+`;
+export const TextError = styled.p`
+  font-size: 14px;
+  margin: 5px 0 0;
+  line-height: 18px;
+  color: ${({ theme: { colors } }) => colors.error};
 `;
