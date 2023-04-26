@@ -5,15 +5,15 @@ export const bankSchema = {
   [CODE_BANK.NUBANK]: yup.object().shape({
     password: yup
       .string()
-      .min(8, "Invalid password, must be 8 or more characters")
-      .required("Mandatory password field"),
+      .min(8, "Senha inválida, deve ter 8 ou mais caracteres")
+      .required("Campo de senha obrigatória"),
     cpf: yup
       .string()
       .matches(
         /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
-        "CPF don't match with format 123.456.789-10"
+        "CPF não corresponde ao formato 123.456.789-10"
       )
-      .required("Mandatory CPF field"),
+      .required("Campo obrigatório do CPF"),
   }),
   // [CODE_BANK.PICPAY]: yup.object().shape(),
 };
