@@ -35,6 +35,9 @@ const theme = {
     black_1: "#000000",
     gray_1: "#A9A4AC",
     blue_1: "#141B41",
+    error: "#d32f2f",
+    success: "#6EBA19",
+    warning: "#121A3D",
   },
 };
 

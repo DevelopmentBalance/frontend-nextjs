@@ -50,7 +50,7 @@ export const AlertContent = styled.p`
   font-weight: normal;
 `;
 
-export const FormModal = styled(Form)`
+export const FormModal = styled.form`
   display: flex;
   flex-direction: column;
   gap: 10px;

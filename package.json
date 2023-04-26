@@ -27,6 +27,6 @@
     "react-select": "^5.6.1",
     "react-toastify": "6.2.0",
     "styled-components": "^5.3.1",
-    "yup": "^0.32.11"
+    "yup": "^1.0.2"
   }
 }

@@ -10,6 +10,7 @@ const Input = ({
   label = "",
   value,
   width = "100%",
+  error,
   ...rest
 }) => (
   <S.InputContainer {...rest}>
@@ -23,6 +24,7 @@ const Input = ({
       width={width}
       placeholder={label}
     />
+    {error && <S.TextError>{error}</S.TextError>}
   </S.InputContainer>
 );
 
