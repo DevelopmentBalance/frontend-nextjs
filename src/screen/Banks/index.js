@@ -1,8 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import { Balance } from "@/components/modules";
-import { ModalConectBank, Skeleton } from "@/components";
+import { ModalConectBank, Skeleton, Balance } from "@/components";
 
 import { useBanks } from "./useBanks";
 import { BankCard } from "./BankCard";

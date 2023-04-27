@@ -1,3 +1,1 @@
-import { Balance } from "./Balance";
-
-export { Balance };
+export { Balance } from "./Balance";

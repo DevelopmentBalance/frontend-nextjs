@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Skeleton } from "@/components/Skeleton";
+import { Skeleton } from "@/components";
 
 import doubleLeftArrow from "@/assets/icons/double-left-arrow.png";
 import leftArrow from "@/assets/icons/left-arrow.png";

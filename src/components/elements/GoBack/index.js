@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 
 import * as S from "./styles";
 
-import goBackBlack from "../../assets/icons/go-back.png";
-import goBackWhite from "../../assets/icons/go-back-white.png";
+import goBackBlack from "@/assets/icons/go-back.png";
+import goBackWhite from "@/assets/icons/go-back-white.png";
 
 export const GoBack = ({
   title = "",
