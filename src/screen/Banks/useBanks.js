@@ -1,38 +1,12 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
-import { useApp } from "@/application/context";
-import { getUser } from "@/infrastructure/services/user-service";
+import { useApp, useUser } from "@/application/context";
 
 export const useBanks = () => {
-  const [user, setUser] = useState({});
-  const [userUpdated, setUserUpdate] = useState(false);
-  const [isLoading, setLoading] = useState(true);
   const [connectBankModal, setConnectBankModal] = useState(false);
 
-  const { showToastMessage, setViewBalance, isViewBalance } = useApp();
-  const { push } = useRouter();
-
-  useEffect(() => {
-    if (!userUpdated) {
-      setLoading(true);
-
-      getUser()
-        .then((response) => {
-          setUser(response);
-          setLoading(false);
-        })
-        .catch((error) => {
-          if (error?.response?.data?.detail === "Signature has expired") {
-            push("/");
-          }
-          showToastMessage(error || "Erro na autenticação", "msgError");
-          setLoading(false);
-        });
-
-      setUserUpdate(true);
-    }
-  }, [userUpdated]);
+  const { setViewBalance, isViewBalance } = useApp();
+  const { user, isLoading } = useUser();
 
   const isUserWithoutBank = !user?.banks?.length && !isLoading;
 
