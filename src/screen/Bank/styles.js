@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 
-import { Balance } from "../../components/modules";
 import {
   Card,
   GoBack as GoBackComponent,
   FlexTable,
   BalanceCard as BalanceCardComponent,
-} from "../../components";
+  Balance,
+} from "@/components";
 
 export const HomeContainer = styled(Balance)`
   display: flex;

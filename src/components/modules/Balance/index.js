@@ -6,39 +6,28 @@ import { useBalance } from "./useBalance";
 
 import * as S from "./styles";
 
-const Balance = ({ children, ...restProps }) => {
-  const {
-    listMain,
-    stateMain,
-    setStateMain,
-    stateModal,
-    setStateModal,
-    onSubmit,
-    stateCode,
-  } = useBalance();
+export const Balance = ({ children, ...restProps }) => {
+  const { listMain, main, modal, setMain, setModal } = useBalance();
 
   return (
     <S.HomeContainer>
       <S.Left>
         <SideBar
           listContent={listMain}
-          state={stateMain}
-          setState={setStateMain}
+          isOpen={main}
+          toggleBar={() => setMain(!main)}
         />
       </S.Left>
-      <S.Right state={stateMain} {...restProps}>
+      <S.Right state={main} {...restProps}>
         {children}
       </S.Right>
-      {stateModal && (
+      {modal && (
         <ModalConectBank
-          state={stateModal}
-          setState={setStateModal}
-          onSubmit={onSubmit}
-          stateCode={stateCode}
+          onClose={() => {
+            setModal(false);
+          }}
         />
       )}
     </S.HomeContainer>
   );
 };
-
-export { Balance };

@@ -11,18 +11,18 @@ import DefaultTheme from "@/styles/defaultTheme";
 
 import { AppProvider, UserProvider } from "@/application/context";
 
-export default function App({ Component, pageProps }) {
-  return (
-    <ThemeProvider theme={DefaultTheme}>
-      <UserProvider>
-        <AppProvider>
-          <FormikProvider>
-            <GlobalStyles />
-            <ToastContainer />
-            <Component {...pageProps} />
-          </FormikProvider>
-        </AppProvider>
-      </UserProvider>
-    </ThemeProvider>
-  );
-}
+const App = ({ Component, pageProps }) => (
+  <ThemeProvider theme={DefaultTheme}>
+    <UserProvider>
+      <AppProvider>
+        <FormikProvider>
+          <GlobalStyles />
+          <ToastContainer />
+          <Component {...pageProps} />
+        </FormikProvider>
+      </AppProvider>
+    </UserProvider>
+  </ThemeProvider>
+);
+
+export default App;

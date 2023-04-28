@@ -1,7 +1,6 @@
-import { Form } from "formik";
 import styled from "styled-components";
 
-import { Button as ButtonComponent } from "../../components";
+import { Button as ButtonComponent } from "../Button";
 
 export const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
@@ -19,11 +18,37 @@ export const Container = styled.div`
 export const Modal = styled.div`
   background-color: ${({ theme: { colors } }) => colors.white_1};
   width: 400px;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+
+  @media (max-width: ${({ theme: { media } }) => media.tablet_portrait}) {
+    width: 100%;
+    height: unset;
+    min-height: 100vh;
+    border-radius: 0;
+    padding: 40px 20px;
+  }
+`;
+
+export const Title = styled.p`
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+`;
+
+export const Describe = styled.p`
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 15px;
+  text-align: center;
+`;
+
+export const WrapperButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Button = styled(ButtonComponent)`
@@ -53,5 +78,5 @@ export const AlertContent = styled.p`
 export const FormModal = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
 `;

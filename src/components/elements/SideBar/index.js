@@ -2,7 +2,6 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import { useApp } from "@/application/context";
-import { useWindowDimensions } from "@/application/hooks";
 import { logoutUser } from "@/infrastructure/services/user-service";
 
 import logo from "@/assets/icons/logo.svg";
@@ -13,9 +12,9 @@ import menuImagePurple from "@/assets/icons/menu-purple.png";
 import * as S from "./styles";
 
 export const SideBar = ({
-  state,
   listContent = [],
-  setState,
+  isOpen,
+  toggleBar,
   onClick,
   disable,
   loading,
@@ -23,52 +22,42 @@ export const SideBar = ({
 }) => {
   const { push } = useRouter();
   const { showToastMessage } = useApp();
-  const { isTabletPortrait } = useWindowDimensions();
 
-  const menuImage = state ? menuImageWhite : menuImagePurple;
-
-  const isAvailableToViewLogo = state || (!state && !isTabletPortrait);
+  const menuImage = isOpen ? menuImageWhite : menuImagePurple;
 
   return (
     <S.MainContent
       onClick={() => {
-        if (isTabletPortrait) return;
-
-        setState(!state);
+        toggleBar();
       }}
-      state={state}
+      isOpen={isOpen}
       {...restProps}
     >
-      <S.MenuMobile
-        src={menuImage.src}
-        onClick={() => {
-          setState(!state);
-        }}
-      />
-      {isAvailableToViewLogo && <S.Logo src={logo.src} />}
+      <S.MenuMobile src={menuImage.src} onClick={() => toggleBar()} />
+      <S.Logo src={logo.src} isOpen={isOpen} />
       <S.List>
         {listContent.length &&
           listContent.map((element, index) => (
             <S.ListELement
               key={index}
-              state={state}
+              isOpen={isOpen}
               onClick={(e) => {
-                if (state) {
+                if (isOpen) {
                   element.onClick(e);
                 }
               }}
             >
               <S.Icon src={element?.icon.src} />
-              {state && <p>{element?.name}</p>}
+              {isOpen && <p>{element?.name}</p>}
             </S.ListELement>
           ))}
       </S.List>
 
-      <S.Footer state={state}>
+      <S.Footer isOpen={isOpen}>
         <S.ListELement
-          state={state}
+          isOpen={isOpen}
           onClick={(e) => {
-            if (!state) return;
+            if (!isOpen) return;
 
             e.stopPropagation();
             logoutUser();
@@ -77,10 +66,10 @@ export const SideBar = ({
           }}
         >
           <S.Icon src={leftPlataform.src} />
-          {state && <p>Sair</p>}
+          {isOpen && <p>Sair</p>}
         </S.ListELement>
 
-        <S.Copy state={state}>
+        <S.Copy isOpen={isOpen}>
           © Todos os direitos reservados. <br />
           Balance, desde 2021.
         </S.Copy>

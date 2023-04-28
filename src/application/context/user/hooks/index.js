@@ -1,1 +1,1 @@
-export { useProfileData } from "./useProfileData";
+export { useUser } from "./useUser";

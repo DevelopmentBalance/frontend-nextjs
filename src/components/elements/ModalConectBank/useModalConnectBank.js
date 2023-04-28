@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useFormik } from "formik";
 
-import { useApp } from "@/application/context";
+import { useApp, useUser } from "@/application/context";
 import { CODE_BANK } from "@/application/constant";
 import { removeMaskCpf } from "@/infrastructure/utils";
 import {
@@ -8,9 +9,14 @@ import {
   authNubank,
 } from "@/infrastructure/services/bank-service";
 
+import { bankSchema } from "./bankSchema";
+
 export const useModalConectBank = ({ onClose }) => {
-  const [stateCode, setStateCode] = useState(false);
+  const [bankValidation, setBankValidation] = useState(null);
+  const [codeEmail, setCodeEmail] = useState(false);
+
   const { showToastMessage } = useApp();
+  const { setUserUpdate } = useUser();
 
   const stylesBanks = {
     [CODE_BANK.NUBANK]: {
@@ -40,7 +46,7 @@ export const useModalConectBank = ({ onClose }) => {
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
     setSubmitting(true);
 
-    if (stateCode) {
+    if (codeEmail) {
       const payload = {
         code_id: values?.code,
         code: values?.bank?.value,
@@ -51,6 +57,7 @@ export const useModalConectBank = ({ onClose }) => {
         showToastMessage("Banco conectado com sucesso");
         onClose();
         resetForm();
+        setUserUpdate(false);
       } else {
         const errorMessage =
           response?.message || "Erro ao tentar conectar com Banco";
@@ -71,7 +78,7 @@ export const useModalConectBank = ({ onClose }) => {
     const response = await sendCodeByEmailNubank(payload);
 
     if (response?.success) {
-      setStateCode(true);
+      setCodeEmail(true);
       showToastMessage("Código enviado com sucesso");
     } else {
       const errorMessage = response?.message || "Erro ao tentar enviar código";
@@ -81,10 +88,27 @@ export const useModalConectBank = ({ onClose }) => {
     setSubmitting(false);
   };
 
+  const handleSelectBank = (bank) => {
+    setBankValidation(bank?.value);
+    formik.setFieldValue("bank", bank);
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      ...initialValues,
+    },
+    onSubmit,
+    validationSchema: bankSchema[bankValidation],
+  });
+
+  const isAvailableToSubmit =
+    formik.isValid && !formik.isSubmitting && !!bankValidation;
+
   return {
     getCurrentBankStyle,
-    initialValues,
-    onSubmit,
-    stateCode,
+    codeEmail,
+    handleSelectBank,
+    formik,
+    isAvailableToSubmit,
   };
 };

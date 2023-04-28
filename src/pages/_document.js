@@ -33,18 +33,8 @@ export default class MyDocument extends Document {
         <Head>
           {/* eslint-disable-next-line @next/next/no-title-in-document-head */}
           <title>Balance</title>
-          <link
-            rel="icon"
-            type="image/svg"
-            sizes="32x32"
-            href="favicon.svg"
-          />
-          <link
-            rel="icon"
-            type="image/svg"
-            sizes="16x16"
-            href="favicon.svg"
-          />
+          <link rel="icon" type="image/svg" sizes="32x32" href="favicon.svg" />
+          <link rel="icon" type="image/svg" sizes="16x16" href="favicon.svg" />
           <link
             rel="apple-touch-icon"
             type="image/svg"
