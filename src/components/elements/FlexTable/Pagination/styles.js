@@ -6,15 +6,14 @@ export const CustomIcon = styled.div`
   justify-content: center;
 `;
 
-export const Icon = styled.img`
-  width: ${({ width }) => (width ? `${width}px` : "25px")};
-  height: ${({ height }) => (height ? `${height}px` : "25px")};
-  background-size: ${({ width, height }) =>
-    width || height ? `${width}px` : "25px"};
-`;
+export const Icon = styled.img``;
 
 export const Actions = styled.div`
-  margin-top: 10px;
+  margin: 15px 0;
   display: flex;
-  gap: 10px;
+  gap: 30px;
+
+  @media (max-width: ${({ theme: { media } }) => media.tablet_portrait}) {
+    margin: 15px auto;
+  }
 `;

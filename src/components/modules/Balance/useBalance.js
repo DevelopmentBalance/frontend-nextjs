@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import bankList from "@/assets/icons/bank-white.png";
+import bankList from "@/assets/icons/bank.svg";
 
 export const useBalance = () => {
   const [main, setMain] = useState(false);

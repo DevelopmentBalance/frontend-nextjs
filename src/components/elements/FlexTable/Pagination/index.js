@@ -2,10 +2,10 @@ import * as React from "react";
 
 import { Skeleton } from "@/components";
 
-import doubleLeftArrow from "@/assets/icons/double-left-arrow.png";
-import leftArrow from "@/assets/icons/left-arrow.png";
-import rightArrow from "@/assets/icons/right-arrow.png";
-import doubleRightArrow from "@/assets/icons/double-right-arrow.png";
+import doubleLeftArrow from "@/assets/icons/paginationDoubleLeft.svg";
+import leftArrow from "@/assets/icons/paginationLeft.svg";
+import rightArrow from "@/assets/icons/paginationRight.svg";
+import doubleRightArrow from "@/assets/icons/paginationDoubleRight.svg";
 
 import * as S from "./styles";
 

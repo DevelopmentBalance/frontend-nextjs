@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@/components";
 
-import imageConnect from "@/assets/images/connect.png";
+import imageConnect from "@/assets/images/dotConnections.svg";
 
 import * as S from "./styles";
 

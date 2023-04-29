@@ -29,13 +29,11 @@ export const Column = styled.div`
       fontSizeHeader || fontSize.medium_small};
   }
 
-  @media screen and (max-width: ${({ theme: { media } }) =>
-      media.tablet_landscape}) {
+  @media (max-width: ${({ theme: { media } }) => media.tablet_landscape}) {
     display: ${({ hideOnTablet }) => (hideOnTablet ? "none" : "flex")};
   }
 
-  @media screen and (max-width: ${({ theme: { media } }) =>
-      media.mobile_landscape}) {
+  @media (max-width: ${({ theme: { media } }) => media.mobile_landscape}) {
     display: ${({ hideOnMobile }) => (hideOnMobile ? "none" : "flex")};
   }
 
@@ -85,13 +83,11 @@ export const RowColumn = styled.div`
     font-size: ${({ theme: { fontSize } }) => fontSize.medium_small};
   }
 
-  @media screen and (max-width: ${({ theme: { media } }) =>
-      media.tablet_landscape}) {
+  @media (max-width: ${({ theme: { media } }) => media.tablet_landscape}) {
     display: ${({ hideOnTablet }) => (hideOnTablet ? "none" : "flex")};
   }
 
-  @media screen and (max-width: ${({ theme: { media } }) =>
-      media.mobile_landscape}) {
+  @media (max-width: ${({ theme: { media } }) => media.mobile_landscape}) {
     display: ${({ hideOnMobile }) => (hideOnMobile ? "none" : "flex")};
   }
 
