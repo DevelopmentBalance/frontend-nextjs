@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 
 import { Input } from "@/components";
 
-import logoImage from "@/assets/icons/logo-purple.png";
-import banksImage from "@/assets/images/banks-animation.png";
+import logoImage from "@/assets/icons/logoPurple.svg";
+import banksImage from "@/assets/images/animationBanks.svg";
 
 import { validationSchema } from "./validationSchema";
 import { useLogin } from "./useLogin";

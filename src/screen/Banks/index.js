@@ -6,7 +6,7 @@ import { ModalConectBank, Skeleton, Balance } from "@/components";
 import { useBanks } from "./useBanks";
 import { BankCard } from "./BankCard";
 
-import addBankImage from "@/assets/icons/add.png";
+import addBankImage from "@/assets/icons/add.svg";
 
 import * as S from "./styles";
 
