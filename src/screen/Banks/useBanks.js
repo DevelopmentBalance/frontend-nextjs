@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useApp, useUser } from "@/application/context";
+import { getUser } from "@/infrastructure/services/user-service";
 
 export const useBanks = () => {
   const [connectBankModal, setConnectBankModal] = useState(false);
 
-  const { setViewBalance, isViewBalance } = useApp();
-  const { user, isLoading } = useUser();
+  const { setViewBalance, isViewBalance, showToastMessage } = useApp();
+  const { user, isLoading, userUpdated, setUser } = useUser();
 
   const isUserWithoutBank = !user?.banks?.length && !isLoading;
 
@@ -30,6 +31,16 @@ export const useBanks = () => {
 
     setConnectBankModal(false);
   };
+
+  useEffect(() => {
+    if (!userUpdated) {
+      getUser()
+        .then(setUser)
+        .catch((error) => {
+          showToastMessage(error || "Erro na autenticação", "msgError");
+        });
+    }
+  }, [userUpdated]);
 
   return {
     user,
