@@ -17,6 +17,8 @@ export const Login = () => {
   const { onSubmit, loginSchema } = useLogin();
   const { email, password } = loginSchema;
 
+  const isAvailableToRegister = false;
+
   return (
     <S.Body>
       <S.Left>
@@ -77,7 +79,10 @@ export const Login = () => {
 
         <S.DontRegister>
           Ainda não tem cadastro?
-          <S.Register onClick={() => push("/register")}>
+          <S.Register
+            isDisabled={!isAvailableToRegister}
+            onClick={() => isAvailableToRegister && push("/register")}
+          >
             Cadastrar-se.
           </S.Register>
         </S.DontRegister>
