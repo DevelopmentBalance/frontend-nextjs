@@ -6,8 +6,8 @@ import { banksMock } from "@/application/mocks";
 import { maskReal, dateAndTimeFormatter } from "@/infrastructure/utils";
 import { useBankService } from "@/infrastructure/services/bank-service";
 
-import income from "@/assets/icons/income.png";
-import expense from "@/assets/icons/expense.png";
+import income from "@/assets/icons/income.svg";
+import expense from "@/assets/icons/expense.svg";
 
 import * as S from "../styles";
 

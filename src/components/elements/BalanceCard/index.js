@@ -2,8 +2,8 @@ import React from "react";
 
 import { maskReal } from "@/infrastructure/utils";
 
-import eyesView from "@/assets/icons/eyes-view.png";
-import eyesNowiew from "@/assets/icons/eyes-noview.png";
+import eyesView from "@/assets/icons/eyeView.svg";
+import eyesNowiew from "@/assets/icons/eyeNoView.svg";
 
 import { Skeleton } from "../Skeleton";
 

@@ -17,7 +17,7 @@ export function FlexTable({
   hasPagination = false,
   page,
   setPage,
-  isView,
+  isView = true,
   ...rest
 }) {
   const { renderHeaderColumns, renderRows } = useFlexTable({

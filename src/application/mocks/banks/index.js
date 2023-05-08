@@ -1,6 +1,6 @@
 import { CODE_BANK } from "@/application/constant";
 
-import logoNubank from "@/assets/icons/logo-nubank.png";
+import logoNubank from "@/assets/icons/logoNubank.svg";
 
 export const banksMock = [
   {

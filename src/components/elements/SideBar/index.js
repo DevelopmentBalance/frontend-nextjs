@@ -1,13 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-import { useApp } from "@/application/context";
+import { useApp, useUser } from "@/application/context";
 import { logoutUser } from "@/infrastructure/services/user-service";
 
-import logo from "@/assets/icons/logo.svg";
-import leftPlataform from "@/assets/icons/left-white.png";
-import menuImageWhite from "@/assets/icons/menu.png";
-import menuImagePurple from "@/assets/icons/menu-purple.png";
+import logo from "@/assets/icons/logoWhite.svg";
+import leftPlataform from "@/assets/icons/exit.svg";
+import menuImageWhite from "@/assets/icons/menuWhite.svg";
+import menuImagePurple from "@/assets/icons/menuPurple.svg";
 
 import * as S from "./styles";
 
@@ -22,6 +22,7 @@ export const SideBar = ({
 }) => {
   const { push } = useRouter();
   const { showToastMessage } = useApp();
+  const { setUserUpdate } = useUser();
 
   const menuImage = isOpen ? menuImageWhite : menuImagePurple;
 
@@ -63,6 +64,7 @@ export const SideBar = ({
             logoutUser();
             push("/");
             showToastMessage("Desconectado com sucesso");
+            setUserUpdate(false);
           }}
         >
           <S.Icon src={leftPlataform.src} />

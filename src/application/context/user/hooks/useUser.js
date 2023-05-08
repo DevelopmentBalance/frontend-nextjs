@@ -30,6 +30,7 @@ export const useUser = () => {
   return {
     user: state.user,
     setUser,
+    userUpdated: state.userUpdated,
     setUserUpdate,
     setLoading,
     isLoading: state.isLoading,

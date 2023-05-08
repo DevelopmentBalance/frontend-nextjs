@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const GoBackContent = styled.div`
   display: flex;
@@ -16,9 +16,4 @@ export const GoBackImage = styled.img`
 
 export const GoBackTitle = styled.p`
   font-weight: bold;
-  ${({ isWhite }) =>
-    isWhite &&
-    css`
-      color: ${({ theme: { colors } }) => colors.white_1};
-    `};
 `;
