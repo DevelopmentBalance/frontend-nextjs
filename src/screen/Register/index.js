@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 
 import { Input } from "../../components";
 
@@ -9,8 +10,17 @@ import * as S from "./styles";
 export const Register = () => {
   const { onSubmit, registerSchema, getFieldDefaultProps, isSubmitting } =
     useRegister();
+  const history = useRouter();
 
   const { surname, fullname, email, password1, password2 } = registerSchema;
+
+  const isAvailableToRegister = false;
+
+  useEffect(() => {
+    if (!isAvailableToRegister && history?.push) {
+      history.push("/");
+    }
+  }, [history]);
 
   return (
     <S.RegisterContent>
