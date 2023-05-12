@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-import { Button, GoBack as GoBackComponent } from "../../components";
+import {
+  Button,
+  GoBack as GoBackComponent,
+  Checkbox as CheckboxComponent,
+} from "../../components";
 
 export const RegisterContent = styled.div`
   height: 100vh;
@@ -50,4 +54,13 @@ export const GoBack = styled(GoBackComponent)`
   position: absolute;
   left: 0;
   top: 0;
+`;
+
+export const Checkbox = styled(CheckboxComponent)`
+  margin-top: 30px;
+`;
+
+export const Links = styled.span`
+  cursor: pointer;
+  color: red;
 `;

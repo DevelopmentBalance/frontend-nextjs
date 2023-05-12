@@ -8,3 +8,4 @@ export { ModalConectBank } from "./ModalConectBank";
 export { SelectComponent } from "./Select";
 export { SideBar } from "./SideBar";
 export { Skeleton } from "./Skeleton";
+export { Checkbox } from "./Checkbox";
