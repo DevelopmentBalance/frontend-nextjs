@@ -64,20 +64,20 @@ export const Icon = styled.img`
   height: 20px;
 `;
 
-export const Copy = styled.div`
-  color: transparent;
-  white-space: nowrap;
-  padding: 10px;
-  opacity: 0.3;
+export const MenuMobile = styled.img`
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  display: none;
 
-  ${({ isOpen }) =>
-    isOpen &&
-    css`
-      color: ${({ theme: { colors } }) => colors.white_1};
-    `};
+  @media (max-width: ${({ theme: { media } }) => media.tablet_portrait}) {
+    pointer-events: initial;
+    display: block;
+  }
 `;
 
 export const Footer = styled.footer`
+  width: 200px;
   position: absolute;
   bottom: 0;
   color: #fff;
@@ -90,14 +90,42 @@ export const Footer = styled.footer`
     `};
 `;
 
-export const MenuMobile = styled.img`
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  display: none;
+export const Separator = styled.div`
+  background-color: transparent;
+  width: calc(100% - 20px); // margin 10px x 2
+  height: 1px;
+  margin: 0 10px;
 
-  @media (max-width: ${({ theme: { media } }) => media.tablet_portrait}) {
-    pointer-events: initial;
-    display: block;
-  }
+  ${({ isOpen }) =>
+    isOpen &&
+    css`
+      background-color: rgba(255, 255, 255, 0.2);
+    `};
+
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+`;
+
+export const About = styled.div`
+  width: 100%;
+  padding: 10px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Links = styled.a`
+  color: ${({ theme: { colors }, isOpen }) =>
+    isOpen ? colors.white_1 : "transparent"};
+  white-space: nowrap;
+  opacity: ${({ opacity }) => opacity};
+  text-decoration: none;
+  font-size: 11px;
+
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 `;

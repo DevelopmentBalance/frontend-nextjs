@@ -9,6 +9,8 @@ import leftPlataform from "@/assets/icons/exit.svg";
 import menuImageWhite from "@/assets/icons/menuWhite.svg";
 import menuImagePurple from "@/assets/icons/menuPurple.svg";
 
+import { TYPE_CATEGORY } from "../../../screen/Rules/constant";
+
 import * as S from "./styles";
 
 export const SideBar = ({
@@ -26,6 +28,14 @@ export const SideBar = ({
 
   const menuImage = isOpen ? menuImageWhite : menuImagePurple;
 
+  const redirect = (category) => {
+    const query = { category };
+
+    const url = `/rules?${new URLSearchParams(query).toString()}`;
+
+    window.open(url, "_blank");
+  };
+
   return (
     <S.MainContent
       onClick={() => {
@@ -36,6 +46,7 @@ export const SideBar = ({
     >
       <S.MenuMobile src={menuImage.src} onClick={() => toggleBar()} />
       <S.Logo src={logo.src} isOpen={isOpen} />
+
       <S.List>
         {listContent.length &&
           listContent.map((element, index) => (
@@ -71,10 +82,25 @@ export const SideBar = ({
           {isOpen && <p>Sair</p>}
         </S.ListELement>
 
-        <S.Copy isOpen={isOpen}>
-          © Todos os direitos reservados. <br />
-          Balance, desde 2021.
-        </S.Copy>
+        <S.Separator isOpen={isOpen} />
+
+        <S.About>
+          <S.Links
+            isOpen={isOpen}
+            onClick={() => redirect(TYPE_CATEGORY.PRIVACY_POLICY)}
+          >
+            Política de privacidade
+          </S.Links>
+          <S.Links
+            isOpen={isOpen}
+            onClick={() => redirect(TYPE_CATEGORY.TERMS_AND_CONDITIONS)}
+          >
+            Termos e Condições
+          </S.Links>
+          <S.Links isOpen={isOpen} opacity={0.5}>
+            © 2023 Balance
+          </S.Links>
+        </S.About>
       </S.Footer>
     </S.MainContent>
   );
