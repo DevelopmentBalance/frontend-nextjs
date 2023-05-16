@@ -32,7 +32,7 @@ const Button = ({
     <S.ButtonElement
       onClick={onClick}
       disabled={disable}
-      loading={loading}
+      loading={`${loading}`}
       variant={variant}
       size={size}
       {...restProps}

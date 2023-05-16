@@ -32,7 +32,6 @@ export const BanksImage = styled.img`
 `;
 
 export const Describe = styled.p`
-  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -124,7 +123,7 @@ export const ForgotPassword = styled.div`
 
 export const ChangePassword = styled.p`
   color: ${({ theme: { colors } }) => colors.purple_1};
-  font-family: Jost Bold;
+  font-family: "Jost Bold";
   cursor: pointer;
 
   ${({ isDisabled }) =>
@@ -162,7 +161,7 @@ export const DontRegister = styled.div`
 
 export const Register = styled.p`
   color: ${({ theme: { colors } }) => colors.purple_1};
-  font-family: Jost Bold;
+  font-family: "Jost Bold";
   cursor: pointer;
 
   ${({ isDisabled }) =>

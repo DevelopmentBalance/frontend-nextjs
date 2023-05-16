@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import { Input } from "@/components";
 
@@ -22,7 +23,12 @@ export const Login = () => {
   return (
     <S.Body>
       <S.Left>
-        <S.BanksImage src={banksImage.src} alt="bancos animação" />
+        <Image
+          src={banksImage}
+          width={390}
+          height={425}
+          alt="bancos animação"
+        />
         <S.Describe>
           Somos uma plataforma que consegue trazer os dados dos seus bancos e
           entregar uma forma com que você consiga gerenciar melhor essas
@@ -31,7 +37,7 @@ export const Login = () => {
       </S.Left>
       <S.Right>
         <S.LogoContainer>
-          <S.Logo src={logoImage.src} alt="logo balance" />
+          <Image src={logoImage} width={130} height={130} alt="logo balance" />
         </S.LogoContainer>
 
         <Formik
