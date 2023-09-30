@@ -4,6 +4,12 @@ import logoNubank from "@/assets/icons/logoNubank.svg";
 
 export const banksMock = [
   {
+    value: CODE_BANK.METAMASK,
+    label: "MetaMask",
+    logoImage: logoNubank,
+    color: "rgba(237, 2, 217, 0.3)",
+  },
+  {
     value: CODE_BANK.NUBANK,
     label: "Nubank",
     logoImage: logoNubank,

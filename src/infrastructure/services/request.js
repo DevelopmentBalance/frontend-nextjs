@@ -30,12 +30,9 @@ client.interceptors.request.use(
 client.interceptors.response.use(
   (response) => response.data,
   (error) => {
-    const responseStatus = error.response ? error.response.status : 0;
+    // const responseStatus = error.response ? error.response.status : 0;
 
-    if (
-      error?.response?.data?.detail === "Signature has expired" ||
-      responseStatus === 401
-    ) {
+    if (error?.response?.data?.detail === "Signature has expired") {
       console.log("Unauthorized Access, redirect to login");
       window.location = "/";
     } else {
